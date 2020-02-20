@@ -1,6 +1,7 @@
 package com.example.appnote
 
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -26,9 +27,17 @@ class DetailsNoteActivity : AppCompatActivity() {
             val title =edittext_title.text.toString()
             val description =edittext_description.text.toString()
             val date =edittext_date.text.toString()
+            val notePos=intent.getIntExtra(Constants.NOTE_POSITION,-1)
 
-            val note= Note(title = title , description = description ,time = date)
-            MyDataBase.getInstance(applicationContext)?.notesDao()?.updateNote(note)
+
+            val intent = Intent(this, NoteListActivity::class.java)
+            intent.putExtra(Constants.EDIT_NOTE_TITLE,title)
+            intent.putExtra(Constants.EDIT_NOTE_DESCRIPTION,description)
+            intent.putExtra(Constants.EDIT_NOTE_DATE,date)
+            intent.putExtra(Constants.EDIT_NOTE_POSITION,notePos)
+
+
+
 
             showSuccessMessage()
 

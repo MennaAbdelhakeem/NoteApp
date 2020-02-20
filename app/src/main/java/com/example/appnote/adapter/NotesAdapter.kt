@@ -1,5 +1,6 @@
 package com.example.appnote.adapter
 
+import android.R.attr.data
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appnote.R
 import com.example.appnote.database.model.Note
+
 
 class NotesAdapter(var notes:MutableList<Note>?):RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
 
@@ -28,6 +30,16 @@ class NotesAdapter(var notes:MutableList<Note>?):RecyclerView.Adapter<NotesAdapt
 
         fun onItemClick(position: Int,item: Note?)
 
+    }
+
+    fun getNoteAt(position:Int):Note{
+
+        return notes!!.get(position)
+    }
+
+    fun restoreItem(item: Note?, position: Int) {
+        notes?.add(position, item!!)
+        notifyItemInserted(position)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 val view  =LayoutInflater.from(parent.context).inflate(R.layout.item_note,parent,false)
