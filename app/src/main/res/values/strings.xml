@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AppNote</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_note_list">NoteListActivity</string>
+    <string name="notecreatesuccessfully">Note Created Successfully</string>
+    <string name="ok">Ok</string>
+    <string name="noteupdatesuccessfully">Note Update Successfuly</string>
+</resources>
