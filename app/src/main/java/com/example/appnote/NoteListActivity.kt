@@ -29,6 +29,29 @@ var notesAdapter=NotesAdapter(null)
         }
 }
 
+        notesAdapter.onDeleteItemClickListener=
+            object :NotesAdapter.OnItemClickListener{
+
+
+                override fun onItemClick(position: Int, item: Note?) {
+                    val title =item?.title.toString()
+                    val description =item?.description.toString()
+                    val date =item?.time.toString()
+
+                    val note= Note(title = title , description = description ,time = date)
+                    MyDataBase.getInstance(applicationContext)?.notesDao()?.deleteNote(note)
+                    notesAdapter.removeItem(position)
+                    // notesAdapter?.notifyItemRemoved(position)
+                }
+            }
+
+
+
+
+
+
+
+
         fab.setOnClickListener { view ->
 
             val intent =Intent(this@NoteListActivity,AddNoteActivity::class.java)
@@ -56,6 +79,18 @@ var notesAdapter=NotesAdapter(null)
 
         val data=MyDataBase.getInstance(applicationContext)?.notesDao()?.getAllNote()
 
-        notesAdapter.changeData(data)
+        notesAdapter.changeData(data as MutableList<Note>?)
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
